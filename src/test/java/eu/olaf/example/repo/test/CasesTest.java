@@ -2,6 +2,7 @@ package eu.olaf.example.repo.test;
 
 import eu.olaf.example.model.test.A;
 import eu.olaf.example.model.test.B;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -30,8 +31,9 @@ public class CasesTest {
         return emf;
     }
 
-    @Test
-    public void test_1() {
+
+    @Before
+    public void init(){
         // save A1 with B1
         doInJPA(this::emf,  entityManager -> {
             A a1 = A.make().withName("A1").withB(B.make().withDesc("B1"));
@@ -49,18 +51,21 @@ public class CasesTest {
             List<A> list = entityManager.createQuery("select a from eu.olaf.example.model.test.A as a").getResultList();
             list.stream().forEach(a -> {LOG.info(a.toString());});
         });
+    }
+
+
+    @Test(expected = javax.persistence.PersistenceException.class)
+    public void test_1() {
+
 
         // over take
         // update A2 with B1
-        doInJPA(this::emf,  entityManager -> {
-//            List<A> list = entityManager.createQuery("select a from eu.olaf.example.model.test.A as a").getResultList();
-//
-//            A a2 = entityManager.
-            A a2 = A.make().withId(3L).withName("newA2").withB(B.make().withId(2L));
+                    doInJPA(this::emf,  entityManager -> {
+                          A a2 = A.make().withId(3L).withName("newA2").withB(B.make().withId(2L));
 
-            entityManager.merge(a2);
-            entityManager.flush();
-        });
+                          entityManager.merge(a2);
+                          entityManager.flush();
+                    });
 
         // show
         doInJPA(this::emf,  entityManager -> {
