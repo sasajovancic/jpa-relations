@@ -4,6 +4,7 @@ import eu.olaf.example.model.Case;
 import org.hibernate.testing.transaction.TransactionUtil;
 import org.hibernate.testing.transaction.TransactionUtil2;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManagerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +32,27 @@ public class CaseRepositorySpringJpaTest {
     @Autowired
     CaseRepository repository;
 
+    @Autowired
+    EntityManagerFactory emf;
+
+    public EntityManagerFactory emf() {
+        return emf;
+    }
     List<Long> ids = new ArrayList<>();
+
+    long caseId;
+
+    @Before
+    @Transactional(readOnly = false)
+    @Commit
+    public void init(){
+        TransactionUtil.doInJPA(this::emf, entityManager-> {
+            Case a1 = Case.make().withRefNumber("ref123");
+            a1.setTitle("Mr. Me");
+            entityManager.persist(a1);
+            caseId = a1.getId();
+        });
+    }
 
     @After
     public void after() {
@@ -65,17 +87,11 @@ public class CaseRepositorySpringJpaTest {
     @Transactional(readOnly = false)
     @Commit
     public void test_delete() {
-        Case cas = new Case();
-        cas.setTitle("test");
-        cas.setRefNumber("123");
 
-        Case res = repository.save(cas);
-        assertNotNull(res);
-        ids.add(res.getId());
-        assertEquals("test", res.getTitle());
-
-        repository.deleteById(res.getId());
-        Optional<Case> opt = repository.findById(res.getId());
+        Optional<Case> opt = repository.findById(caseId);
+        assertTrue(opt.isPresent());
+        repository.deleteById(caseId);
+        opt = repository.findById(caseId);
         assertFalse(opt.isPresent());
     }
 

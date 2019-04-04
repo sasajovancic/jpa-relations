@@ -45,6 +45,6 @@ public class CaseControllerRestTest {
         cas.setRefNumber("test");
         ResponseEntity<Case> res = restTmpl.postForEntity(getRootUrl() + "/cases", (Object) cas, Case.class);
         assertNotNull(res);
-        assertEquals("test", res.getStatusCode());
+        assertEquals(200, res.getStatusCode().value());
     }
 }
