@@ -1,0 +1,18 @@
+What is a problem?
+
+case - 1-1 train
+    train - 1-N containers
+case - 1-1 vessel
+    vessel - 1-N containers
+case - 1-1 owner
+case - 1-N persons
+case - 1-N
+case - M-N attachments
+
+describe
+demonstrate
+
+How solution looks like in Java?
+How solution looks like on DB level?
+How easy is to Query simple query, HQL, Native SQL?
+How easy is to save/update/delete/get?
