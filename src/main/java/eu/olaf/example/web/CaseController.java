@@ -1,13 +1,11 @@
 package eu.olaf.example.web;
 
-import eu.olaf.example.model.Case;
+import eu.olaf.example.model.test.Case;
 import eu.olaf.example.service.impl.CaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 
 @RestController

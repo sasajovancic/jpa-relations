@@ -1,4 +1,4 @@
-What is a problem?
+What is aCase problem?
 
 case - 1-1 train
     train - 1-N containers

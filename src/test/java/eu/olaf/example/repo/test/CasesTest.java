@@ -1,7 +1,7 @@
 package eu.olaf.example.repo.test;
 
-import eu.olaf.example.model.test.A;
-import eu.olaf.example.model.test.B;
+import eu.olaf.example.model.test.Case;
+import eu.olaf.example.model.test.Seizure;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,20 +36,20 @@ public class CasesTest {
     public void init(){
         // save A1 with B1
         doInJPA(this::emf,  entityManager -> {
-            A a1 = A.make().withName("A1").withB(B.make().withDesc("B1"));
-            entityManager.persist(a1);
+            Case case1 = Case.make().withName("A1").withSeizure(Seizure.make().withDesc("B1"));
+            entityManager.persist(case1);
         });
 
         // save A2 with B2
         doInJPA(this::emf,  entityManager -> {
-            A a2 = A.make().withName("A2").withB(B.make().withDesc("B2"));
-            entityManager.persist(a2);
+            Case case2 = Case.make().withName("A2").withSeizure(Seizure.make().withDesc("B2"));
+            entityManager.persist(case2);
         });
 
         // show
         doInJPA(this::emf,  entityManager -> {
-            List<A> list = entityManager.createQuery("select a from eu.olaf.example.model.test.A as a").getResultList();
-            list.stream().forEach(a -> {LOG.info(a.toString());});
+            List<Case> list = entityManager.createQuery("select a from eu.olaf.example.model.test.Case as a").getResultList();
+            list.stream().forEach(aCase -> {LOG.info(aCase.toString());});
         });
     }
 
@@ -61,16 +61,16 @@ public class CasesTest {
         // over take
         // update A2 with B1
                     doInJPA(this::emf,  entityManager -> {
-                          A a2 = A.make().withId(3L).withName("newA2").withB(B.make().withId(2L));
+                          Case case2 = Case.make().withId(3L).withName("newA2").withSeizure(Seizure.make().withId(2L));
 
-                          entityManager.merge(a2);
+                          entityManager.merge(case2);
                           entityManager.flush();
                     });
 
         // show
         doInJPA(this::emf,  entityManager -> {
-            List<A> list = entityManager.createQuery("select a from eu.olaf.example.model.test.A as a").getResultList();
-            list.stream().forEach(a -> {LOG.info(a.toString());});
+            List<Case> list = entityManager.createQuery("select a from eu.olaf.example.model.test.Case as a").getResultList();
+            list.stream().forEach(aCase -> {LOG.info(aCase.toString());});
         });
 
         // or create A3 with B1

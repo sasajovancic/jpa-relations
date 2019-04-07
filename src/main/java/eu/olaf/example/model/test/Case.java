@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity(name = "T_A")
-public class A {
+public class Case {
     @Id
     @GeneratedValue
     private Long id;
@@ -15,28 +15,28 @@ public class A {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
     // todo - add 'unique = true' to fix over taking
     @JoinColumn(name = "b_id", unique = true)
-    private B b;
+    private Seizure seizure;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    public A withId(Long id) { setId(id); return this; }
+    public Case withId(Long id) { setId(id); return this; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public A withName(String name) { setName(name); return this; }
+    public Case withName(String name) { setName(name); return this; }
 
-    public B getB() { return b; }
-    public void setB(B b) { this.b = b; }
-    public A withB(B b) { setB(b); return this; }
+    public Seizure getSeizure() { return seizure; }
+    public void setSeizure(Seizure seizure) { this.seizure = seizure; }
+    public Case withSeizure(Seizure seizure) { setSeizure(seizure); return this; }
 
     @Override
     public String toString() {
-        return "A{" +
+        return "Case{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", b=" + b +
+                ", seizure=" + seizure +
                 '}';
     }
 
-    public static A make() { return new A(); }
+    public static Case make() { return new Case(); }
 }

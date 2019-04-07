@@ -1,6 +1,5 @@
 package eu.olaf.example.repo.test1n;
 
-import eu.olaf.example.model.test.A;
 import eu.olaf.example.model.test1n.One;
 import eu.olaf.example.model.test1n.Two;
 import eu.olaf.example.repo.test.CasesTest;

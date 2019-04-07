@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 
 @Entity(name = "T_B")
-public class B {
+public class Seizure {
     @Id
     @GeneratedValue
     private Long id;
@@ -16,19 +16,19 @@ public class B {
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    public B withId(Long id) { setId(id); return this; }
+    public Seizure withId(Long id) { setId(id); return this; }
 
     public String getDesc() { return desc; }
     public void setDesc(String desc) { this.desc = desc; }
-    public B withDesc(String desc) { setDesc(desc); return this; }
+    public Seizure withDesc(String desc) { setDesc(desc); return this; }
 
     @Override
     public String toString() {
-        return "B{" +
+        return "Seizure{" +
                 "id=" + id +
                 ", desc='" + desc + '\'' +
                 '}';
     }
 
-    public static B make() { return new B(); }
+    public static Seizure make() { return new Seizure(); }
 }

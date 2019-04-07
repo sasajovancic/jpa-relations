@@ -1,6 +1,6 @@
 package eu.olaf.example.service.impl;
 
-import eu.olaf.example.model.Case;
+import eu.olaf.example.model.test.Case;
 import eu.olaf.example.repo.CaseRepository;
 import eu.olaf.example.service.util.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

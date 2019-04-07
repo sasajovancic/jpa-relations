@@ -1,7 +1,5 @@
 package eu.olaf.example.model.test1n;
 
-import eu.olaf.example.model.test.A;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
