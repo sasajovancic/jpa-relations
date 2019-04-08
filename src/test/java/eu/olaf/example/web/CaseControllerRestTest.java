@@ -75,18 +75,11 @@ public class CaseControllerRestTest {
             assertNotNull(res);
             assertEquals(200, res.getStatusCode().value());
             assertEquals(2, res.getBody().getContent().size());
+
+            System.out.println(res.getBody().getContent());
         }
-//
-//        ResponseEntity<String> resString = restTmpl.getForEntity(getRootUrl()+ "/cases" , String.class);
-//
-//        System.out.println(resString.toString());
-//
-//
-//        Page res = restTmpl.getForObject(getRootUrl()+"/cases" , Page.class);
-//        assertNotNull(res);
-//        System.out.println(res.toString());
 
-
+//
 
     }
 }

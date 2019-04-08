@@ -14,7 +14,7 @@ public class Case {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
     // todo - add 'unique = true' to fix over taking
-    @JoinColumn(name = "b_id", unique = true)
+    @JoinColumn(name = "b_id")
     private Seizure seizure;
 
     public Long getId() { return id; }
