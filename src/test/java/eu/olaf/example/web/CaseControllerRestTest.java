@@ -3,12 +3,14 @@ package eu.olaf.example.web;
 import eu.olaf.example.SpringBootCrudRestApplication;
 import eu.olaf.example.model.test.Case;
 import eu.olaf.example.model.test.Seizure;
+import eu.olaf.example.util.RestResponsePage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.springframework.http.HttpMethod.GET;
 
 
 @RunWith(SpringRunner.class)
@@ -64,6 +67,14 @@ public class CaseControllerRestTest {
             ResponseEntity<Case> res = restTmpl.postForEntity(getRootUrl() + "/cases", (Object) cas, Case.class);
             assertNotNull(res);
             assertEquals(200, res.getStatusCode().value());
+        }
+        {
+            ParameterizedTypeReference<RestResponsePage<Case>> ptr = new ParameterizedTypeReference<RestResponsePage<Case>>() { };
+
+            ResponseEntity<RestResponsePage<Case>> res = restTmpl.exchange(getRootUrl() + "/cases/", GET, null, ptr);
+            assertNotNull(res);
+            assertEquals(200, res.getStatusCode().value());
+            assertEquals(2, res.getBody().getContent().size());
         }
 //
 //        ResponseEntity<String> resString = restTmpl.getForEntity(getRootUrl()+ "/cases" , String.class);
