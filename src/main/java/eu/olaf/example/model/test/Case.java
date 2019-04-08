@@ -1,5 +1,9 @@
 package eu.olaf.example.model.test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -48,12 +52,19 @@ public class Case {
 
     @Override
     public String toString() {
-        return "Case{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", seizure=" + seizure +
-                ", persons=" + persons +
-                '}';
+        try {
+
+            return new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return "{}";
+        }
+
+//        return "Case{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", seizure=" + seizure +
+//                ", persons=" + persons +
+//                '}';
     }
 
     public static Case make() { return new Case(); }

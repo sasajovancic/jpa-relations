@@ -24,6 +24,7 @@ public class Person {
     public String getNationalNumber() { return nationalNumber; }
     public void setNationalNumber(String nationalNumber) { this.nationalNumber = nationalNumber; }
 
+    public Person withNationalNumber(String nationalNumber) {setNationalNumber(nationalNumber); return this;}
     public static Person make() { return new Person(); }
 
     @Override
