@@ -54,18 +54,18 @@ public class CasesTest {
     }
 
 
-    @Test(expected = javax.persistence.PersistenceException.class)
+    @Test//(expected = javax.persistence.PersistenceException.class)
     public void test_1() {
 
 
         // over take
         // update A2 with B1
-                    doInJPA(this::emf,  entityManager -> {
-                          Case case2 = Case.make().withId(3L).withName("newA2").withSeizure(Seizure.make().withId(2L));
+        doInJPA(this::emf,  entityManager -> {
+            Case case2 = Case.make().withId(3L).withName("newA2").withSeizure(Seizure.make().withId(2L));
 
-                          entityManager.merge(case2);
-                          entityManager.flush();
-                    });
+            entityManager.merge(case2);
+            entityManager.flush();
+        });
 
         // show
         doInJPA(this::emf,  entityManager -> {

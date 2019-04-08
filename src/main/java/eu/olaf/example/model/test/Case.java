@@ -2,8 +2,10 @@ package eu.olaf.example.model.test;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity(name = "T_A")
+@Entity(name = "T_CASE")
 public class Case {
     @Id
     @GeneratedValue
@@ -14,8 +16,13 @@ public class Case {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
     // todo - add 'unique = true' to fix over taking
-    @JoinColumn(name = "b_id")
+    @JoinColumn(name = "b_id"/*, unique = true*/)
     private Seizure seizure;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL/*, orphanRemoval = true*/)
+    // TODO remove column
+    @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
+    private List<Person> persons;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -29,12 +36,23 @@ public class Case {
     public void setSeizure(Seizure seizure) { this.seizure = seizure; }
     public Case withSeizure(Seizure seizure) { setSeizure(seizure); return this; }
 
+    public List<Person> getPersons() { return persons; }
+    public void setPersons(List<Person> persons) { this.persons = persons; }
+    public Case addPerson(Person person) {
+        if (persons == null) {
+            persons = new ArrayList<>();
+        }
+        persons.add(person);
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Case{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", seizure=" + seizure +
+                ", persons=" + persons +
                 '}';
     }
 
