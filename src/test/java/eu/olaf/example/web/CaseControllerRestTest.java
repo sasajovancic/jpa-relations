@@ -16,9 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.springframework.http.HttpMethod.GET;
 
 
@@ -74,7 +72,7 @@ public class CaseControllerRestTest {
             ResponseEntity<RestResponsePage<Case>> res = restTmpl.exchange(getRootUrl() + "/cases/", GET, null, ptr);
             assertNotNull(res);
             assertEquals(200, res.getStatusCode().value());
-            assertEquals(2, res.getBody().getContent().size());
+            assertTrue(res.getBody().getContent().size() > 2);
         }
 //
 //        ResponseEntity<String> resString = restTmpl.getForEntity(getRootUrl()+ "/cases" , String.class);
