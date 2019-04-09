@@ -1,18 +1,14 @@
 package eu.olaf.example.model.test;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "T_CASE")
+@Entity(name = "T_EX_CASE")
 public class Case {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -23,9 +19,9 @@ public class Case {
     @JoinColumn(name = "b_id"/*, unique = true*/)
     private Seizure seizure;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL/*, orphanRemoval = true*/)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "compositeId.cas"/*, orphanRemoval = true*/)
     // TODO remove column
-    @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
+    // @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
     private List<Person> persons;
 
     public Long getId() { return id; }
@@ -47,24 +43,22 @@ public class Case {
             persons = new ArrayList<>();
         }
         persons.add(person);
+        if (person.getCompositeId() == null) {
+            person.setCompositeId(new CompositeId());
+        }
+        person.getCompositeId().setCas(this);
+
         return this;
     }
 
     @Override
     public String toString() {
-        try {
-
-            return new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            return "{}";
-        }
-
-//        return "Case{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", seizure=" + seizure +
-//                ", persons=" + persons +
-//                '}';
+        return "Case{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", seizure=" + seizure +
+                ", persons=" + persons +
+                '}';
     }
 
     public static Case make() { return new Case(); }

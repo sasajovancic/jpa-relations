@@ -1,6 +1,7 @@
 package eu.olaf.example.web;
 
 import eu.olaf.example.model.test.Case;
+import eu.olaf.example.model.test.CompositeId;
 import eu.olaf.example.service.impl.CaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,5 +41,16 @@ public class CaseController {
         caseService.delete(id);
     }
 
+    /*private Case fix(Case cas) {
+        if (cas.getPersons() != null) {
+            cas.getPersons().stream().forEach(p -> {
+                if (p.getCompositeId() == null) {
+                    p.setCompositeId(new CompositeId());
+                }
+                p.getCompositeId().setCas(cas);
+            });
+        }
+        return cas;
+    }*/
 
 }
