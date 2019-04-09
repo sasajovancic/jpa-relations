@@ -28,12 +28,12 @@ public class CaseController {
 
     @PostMapping
     public Case create(@RequestBody Case cas) {
-        return caseService.save(fix(cas));
+        return caseService.save(cas);
     }
 
     @PutMapping(path = "/{id}")
     public Case update(@PathVariable Long id, @RequestBody Case cas) {
-        return caseService.update(fix(cas));
+        return caseService.update(cas);
     }
 
     @DeleteMapping
@@ -41,7 +41,7 @@ public class CaseController {
         caseService.delete(id);
     }
 
-    private Case fix(Case cas) {
+    /*private Case fix(Case cas) {
         if (cas.getPersons() != null) {
             cas.getPersons().stream().forEach(p -> {
                 if (p.getCompositeId() == null) {
@@ -51,6 +51,6 @@ public class CaseController {
             });
         }
         return cas;
-    }
+    }*/
 
 }

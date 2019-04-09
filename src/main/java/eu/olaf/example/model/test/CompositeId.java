@@ -16,7 +16,7 @@ public class CompositeId implements Serializable {
 //    @Column(name = "CASE_ID", insertable = false, updatable = false)
 //    private Long caseId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
     @JsonIgnore
     private Case cas;

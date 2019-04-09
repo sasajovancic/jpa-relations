@@ -24,6 +24,7 @@ public class CompositeIdGenerator implements IdentifierGenerator {
         if (o != null && o instanceof Person && ((Person)o).getCompositeId() == null) {
             compId = new CompositeId();
             compId.setId(lId);
+            ((Person)o).setCompositeId(compId);
             return compId;
         } else {
             compId = ((Person)o).getCompositeId();
