@@ -50,7 +50,7 @@ public class CasePersonTest {
         });
         // overtake
         doInHibernate(this::sf, session -> {
-            Case cas2 = Case.make().withId(4L).withName("CASE_2_NEW").addPerson(Person.make().withId(2L).withName("PERSON_20_NEW"));
+            Case cas2 = Case.make().withId(2L).withName("CASE_2_NEW").addPerson(Person.make()/*.withId(2L)*/.withName("PERSON_20_NEW"));
             session.saveOrUpdate(cas2);
         });
         doInHibernate(this::sf, session -> {

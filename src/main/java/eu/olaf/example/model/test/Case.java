@@ -19,9 +19,11 @@ public class Case {
     @JoinColumn(name = "b_id"/*, unique = true*/)
     private Seizure seizure;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL/*, orphanRemoval = true*/)
+    // @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL/*, orphanRemoval = true*/)
     // TODO remove column
-    @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
+    // @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "T_PERSON", joinColumns = @JoinColumn(name = "user_id"))
     private List<Person> persons;
 
     public Long getId() { return id; }
