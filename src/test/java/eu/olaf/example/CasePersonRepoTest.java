@@ -88,10 +88,10 @@ public class CasePersonRepoTest {
     private Case fix(Case cas) {
         if (cas.getPersons() != null) {
             cas.getPersons().stream().forEach(p -> {
-                if (p.getCompositeId() == null) {
-                    p.setCompositeId(new CompositeId());
-                }
-                p.getCompositeId().setCas(cas);
+//                if (p.getCompositeId() == null) {
+//                    p.setCompositeId(new CompositeId());
+//                }
+                p.setCas(cas);
             });
         }
         return cas;

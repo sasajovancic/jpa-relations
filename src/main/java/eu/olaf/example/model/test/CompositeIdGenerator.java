@@ -20,18 +20,21 @@ public class CompositeIdGenerator implements IdentifierGenerator {
             compId.setId(lId);
             return compId;
         }
-
-        if (o != null && o instanceof Person && ((Person)o).getCompositeId() == null) {
-            compId = new CompositeId();
-            compId.setId(lId);
-            ((Person)o).setCompositeId(compId);
-            return compId;
-        } else {
-            compId = ((Person)o).getCompositeId();
-            if (compId.getId() == null) {
-                compId.setId(lId);
-            }
-            return compId;
+        else{
+            return lId;
         }
+
+//        if (o != null && o instanceof Person && ((Person)o).getCompositeId() == null) {
+//            compId = new CompositeId();
+//            compId.setId(lId);
+//            ((Person)o).setCompositeId(compId);
+//            return compId;
+//        } else {
+//            compId = ((Person)o).getCompositeId();
+//            if (compId.getId() == null) {
+//                compId.setId(lId);
+//            }
+//            return compId;
+//        }
     }
 }

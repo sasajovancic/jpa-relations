@@ -2,6 +2,7 @@ package eu.olaf.example.web;
 
 import eu.olaf.example.SpringBootCrudRestApplication;
 import eu.olaf.example.model.test.Case;
+import eu.olaf.example.model.test.Person;
 import eu.olaf.example.model.test.Seizure;
 import eu.olaf.example.util.RestResponsePage;
 import org.junit.Test;
@@ -55,7 +56,8 @@ public class CaseControllerRestTest {
     @Test
     public void test_scenario_entity_issue() {
         {
-            Case cas = new Case().withName("case1").withSeizure(new Seizure().withDesc("seizure1"));
+            Case cas = new Case().withName("case1").withSeizure(new Seizure().withDesc("seizure1"))
+                    .addPerson(Person.make().withName("Matt").withId(1l));
             ResponseEntity<Case> res = restTmpl.postForEntity(getRootUrl() + "/cases", (Object) cas, Case.class);
             assertNotNull(res);
             assertEquals(200, res.getStatusCode().value());
@@ -72,7 +74,9 @@ public class CaseControllerRestTest {
             ResponseEntity<RestResponsePage<Case>> res = restTmpl.exchange(getRootUrl() + "/cases/", GET, null, ptr);
             assertNotNull(res);
             assertEquals(200, res.getStatusCode().value());
-            assertTrue(res.getBody().getContent().size() > 2);
+            assertTrue(res.getBody().getContent().size() == 2);
+
+            System.out.println(res.getBody().getContent());
         }
 //
 //        ResponseEntity<String> resString = restTmpl.getForEntity(getRootUrl()+ "/cases" , String.class);

@@ -77,16 +77,17 @@ public class CaseServiceImpl implements CaseService {
                 pNew.setName(p.getName());
                 pNew.setNationalNumber(p.getNationalNumber());
 
-                if (p.getCompositeId() != null) {
-                    CompositeId newId = new CompositeId();
-                    newId.setId(p.getCompositeId().getId());
-                    pNew.setCompositeId(newId);
-                }
-
+//                if (p.getCompositeId() != null) {
+//                    CompositeId newId = new CompositeId();
+//                    newId.setId(p.getCompositeId().getId());
+//                    pNew.setCompositeId(newId);
+//                }
+                pNew.setCas(cas);
                 cNew.addPerson(pNew);
             }
         }
 
+        System.out.println(cNew);
         return cNew;
 
 //        if (cas.getPersons() != null) {

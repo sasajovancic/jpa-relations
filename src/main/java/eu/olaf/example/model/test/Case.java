@@ -19,9 +19,9 @@ public class Case {
     @JoinColumn(name = "b_id"/*, unique = true*/)
     private Seizure seizure;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "compositeId.cas"/*, orphanRemoval = true*/)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "cas"/*, orphanRemoval = true*/)
     // TODO remove column
-    // @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
+//     @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
     private List<Person> persons;
 
     public Long getId() { return id; }
@@ -43,10 +43,10 @@ public class Case {
             persons = new ArrayList<>();
         }
         persons.add(person);
-        if (person.getCompositeId() == null) {
-            person.setCompositeId(new CompositeId());
-        }
-        person.getCompositeId().setCas(this);
+//        if (person.getCompositeId() == null) {
+//            person.setCompositeId(new CompositeId());
+//        }
+        person.setCas(this);
 
         return this;
     }

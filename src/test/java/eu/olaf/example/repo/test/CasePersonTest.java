@@ -58,29 +58,29 @@ public class CasePersonTest {
 
     @Test
     public void test() {
-
-        // overtake
-        doInHibernate(this::sf, session -> {
-            List<Case> list = session.getEntityManagerFactory().createEntityManager().createQuery("select a from eu.olaf.example.model.test.Case as a").getResultList();
-
-            Case cas2 = null;
-            Long oldId = null;
-            for (Case cas : list) {
-                if (cas.getId().longValue() == 2L) {
-                    cas2 = cas;
-                    //oldId = cas.getPersons().get(0).getCompositeId().getId();
-                }
-                if (cas.getId().longValue() == 1L) {
-                    //cas2 = cas;
-                    oldId = cas.getPersons().get(0).getCompositeId().getId();
-                }
-            }
-            cas2 = cas2.addPerson(Person.make().withCompositeId(new CompositeId(oldId, cas2)).withName("PERSON_20_NEW"));
-            session.saveOrUpdate(cas2);
-        });
-        doInHibernate(this::sf, session -> {
-            List<Case> list = session.getEntityManagerFactory().createEntityManager().createQuery("select a from eu.olaf.example.model.test.Case as a").getResultList();
-            list.stream().forEach(aCase -> {LOG.info(aCase.toString());});
-        });
+//
+//        // overtake
+//        doInHibernate(this::sf, session -> {
+//            List<Case> list = session.getEntityManagerFactory().createEntityManager().createQuery("select a from eu.olaf.example.model.test.Case as a").getResultList();
+//
+//            Case cas2 = null;
+//            Long oldId = null;
+//            for (Case cas : list) {
+//                if (cas.getId().longValue() == 2L) {
+//                    cas2 = cas;
+//                    //oldId = cas.getPersons().get(0).getCompositeId().getId();
+//                }
+//                if (cas.getId().longValue() == 1L) {
+//                    //cas2 = cas;
+//                    oldId = cas.getPersons().get(0).getCompositeId().getId();
+//                }
+//            }
+//            cas2 = cas2.addPerson(Person.make().withCompositeId(new CompositeId(oldId, cas2)).withName("PERSON_20_NEW"));
+//            session.saveOrUpdate(cas2);
+//        });
+//        doInHibernate(this::sf, session -> {
+//            List<Case> list = session.getEntityManagerFactory().createEntityManager().createQuery("select a from eu.olaf.example.model.test.Case as a").getResultList();
+//            list.stream().forEach(aCase -> {LOG.info(aCase.toString());});
+//        });
     }
 }
