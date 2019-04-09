@@ -43,6 +43,11 @@ public class Case {
             persons = new ArrayList<>();
         }
         persons.add(person);
+        if (person.getCompositeId() == null) {
+            person.setCompositeId(new CompositeId());
+        }
+        person.getCompositeId().setCas(this);
+
         return this;
     }
 

@@ -1,5 +1,7 @@
 package eu.olaf.example.model.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,12 +18,14 @@ public class CompositeId implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
+    @JsonIgnore
     private Case cas;
 
 
     public CompositeId() {}
-    public CompositeId(Long id, Case cas) {
+    public CompositeId(Long id, /*Long caseId*/ Case cas) {
         this.id = id;
+        // this.caseId = caseId;
         this.cas = cas;
     }
 
@@ -68,7 +72,7 @@ public class CompositeId implements Serializable {
     public String toString() {
         return "CompositeId{" +
                 "id=" + id +
-                //", caseId=" + caseId +
+     //           ", caseId=" + caseId +
                 '}';
     }
 }

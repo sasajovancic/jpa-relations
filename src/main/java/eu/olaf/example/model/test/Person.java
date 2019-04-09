@@ -1,5 +1,7 @@
 package eu.olaf.example.model.test;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.annotation.Generated;
 import javax.persistence.*;
 
@@ -15,7 +17,8 @@ public class Person {
 //    private Long caseId;
 
     @EmbeddedId
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "sequence_comp_id", strategy = "eu.olaf.example.model.test.CompositeIdGenerator")
+    @GeneratedValue(generator = "sequence_comp_id")
     private CompositeId compositeId;
 
     private String name;
