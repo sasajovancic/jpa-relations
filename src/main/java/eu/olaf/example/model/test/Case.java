@@ -5,10 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "T_CASE")
+@Entity(name = "T_EX_CASE")
 public class Case {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -19,9 +19,9 @@ public class Case {
     @JoinColumn(name = "b_id"/*, unique = true*/)
     private Seizure seizure;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL/*, orphanRemoval = true*/)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "compositeId.cas"/*, orphanRemoval = true*/)
     // TODO remove column
-    @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
+    // @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
     private List<Person> persons;
 
     public Long getId() { return id; }
