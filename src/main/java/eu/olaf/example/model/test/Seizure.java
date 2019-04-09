@@ -1,11 +1,14 @@
 package eu.olaf.example.model.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
 @Entity(name = "T_SEIZURE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Seizure {
     @Id
     @GeneratedValue

@@ -1,5 +1,7 @@
 package eu.olaf.example.model.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.Id;
 
 // @Entity(name = "T_PERSON")
 @Embeddable
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Person {
     //@Id
     //@GeneratedValue
