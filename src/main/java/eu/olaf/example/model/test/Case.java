@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity(name = "T_CASE")
+@SecondaryTable(name = "T_SEIZURE", pkJoinColumns = @PrimaryKeyJoinColumn(name = "case_id", referencedColumnName = "id"))
 public class Case {
     @Id
     @GeneratedValue
@@ -13,6 +14,10 @@ public class Case {
     private String name;
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "desc", column = @Column(table = "T_SEIZURE"))/*,
+            @AttributeOverride(name = "z", column = @Column(table = "T_SEIZURE"))*/
+    })
     //@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
     // todo - add 'unique = true' to fix over taking
     //@JoinColumn(name = "b_id", unique = true)
