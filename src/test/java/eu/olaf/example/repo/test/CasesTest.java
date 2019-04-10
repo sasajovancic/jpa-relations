@@ -61,7 +61,7 @@ public class CasesTest {
         // over take
         // update A2 with B1
                     doInJPA(this::emf,  entityManager -> {
-                          Case case2 = Case.make().withId(3L).withName("newA2").withSeizure(Seizure.make().withId(2L));
+                          Case case2 = Case.make().withId(3L).withName("newA2").withSeizure(Seizure.make()/*.withId(2L)*/);
 
                           entityManager.merge(case2);
                           entityManager.flush();
