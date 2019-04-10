@@ -3,7 +3,7 @@ package eu.olaf.example.model.test;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity(name = "T_A")
+@Entity(name = "T_CASE")
 public class Case {
     @Id
     @GeneratedValue
@@ -14,7 +14,7 @@ public class Case {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
     // todo - add 'unique = true' to fix over taking
-    @JoinColumn(name = "b_id", unique = true)
+    @JoinColumn(name = "case_id", unique = true)
     private Seizure seizure;
 
     public Long getId() { return id; }
