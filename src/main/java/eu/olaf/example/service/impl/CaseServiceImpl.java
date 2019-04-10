@@ -1,9 +1,6 @@
 package eu.olaf.example.service.impl;
 
-import eu.olaf.example.model.test.Case;
-import eu.olaf.example.model.test.CompositeId;
-import eu.olaf.example.model.test.Person;
-import eu.olaf.example.model.test.Seizure;
+import eu.olaf.example.model.test.*;
 import eu.olaf.example.repo.CaseRepository;
 import eu.olaf.example.service.util.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +52,22 @@ public class CaseServiceImpl implements CaseService {
         caseRepo.deleteById(id);
     }
 
+    private Case setId(Case cas) {
+        if (cas.getPersons() != null) {
+            for(Person p : cas.getPersons()) {
+                if (p.getId() == null) {
+                    p.setId(CompositeIdGenerator.nextRandomId());
+                }
+            }
+        }
+
+        return cas;
+    }
+
     private Case fix(Case cas) {
+
+        // cas = setId(cas);
+
         Case cNew = new Case();
 
         cNew.setId(cas.getId());
@@ -76,7 +88,7 @@ public class CaseServiceImpl implements CaseService {
 
                 pNew.setName(p.getName());
                 pNew.setNationalNumber(p.getNationalNumber());
-
+                pNew.setId(p.getId());
 //                if (p.getCompositeId() != null) {
 //                    CompositeId newId = new CompositeId();
 //                    newId.setId(p.getCompositeId().getId());

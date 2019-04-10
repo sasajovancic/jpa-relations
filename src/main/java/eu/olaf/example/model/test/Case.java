@@ -14,12 +14,12 @@ public class Case {
     @NotNull
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, optional = true)
     // todo - add 'unique = true' to fix over taking
     @JoinColumn(name = "b_id"/*, unique = true*/)
     private Seizure seizure;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "cas"/*, orphanRemoval = true*/)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "cas", orphanRemoval = true)
     // TODO remove column
 //     @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
     private List<Person> persons;

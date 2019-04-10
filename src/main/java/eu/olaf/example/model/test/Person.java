@@ -5,22 +5,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
+import java.util.Random;
 
 @Entity(name = "T_EX_PERSON")
 @IdClass(CompositeId.class)
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    public Case getCas() {
-        return cas;
-    }
-
-    public void setCas(Case cas) {
-        this.cas = cas;
-    }
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long  id = 0L;
 
     @Id
     @ManyToOne
@@ -54,6 +47,13 @@ public class Person {
 
     public String getNationalNumber() { return nationalNumber; }
     public void setNationalNumber(String nationalNumber) { this.nationalNumber = nationalNumber; }
+
+    public Case getCas() {
+        return cas;
+    }
+    public void setCas(Case cas) {
+        this.cas = cas;
+    }
 
     public static Person make() { return new Person(); }
 
