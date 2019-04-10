@@ -1,33 +1,41 @@
 package eu.olaf.example.model.test;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
-// @Entity(name = "T_B")
-@Embeddable
+@Entity(name = "T_SEIZURE")
 public class Seizure {
-    //@Id
-    //@GeneratedValue
-    //private Long id;
+    @Id
+    @Column(name = "case_id")
+    private Long id;
+
+    @OneToOne
+    @JoinColumn
+    @MapsId
+    private Case cas;
 
     // @NotNull
     private String desc;
 
-//    public Long getId() { return id; }
-//    public void setId(Long id) { this.id = id; }
-//    public Seizure withId(Long id) { setId(id); return this; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public Seizure withId(Long id) { setId(id); return this; }
 
     public String getDesc() { return desc; }
     public void setDesc(String desc) { this.desc = desc; }
     public Seizure withDesc(String desc) { setDesc(desc); return this; }
 
+    public Case getCas() {
+        return cas;
+    }
+    public void setCas(Case cas) {
+        this.cas = cas;
+    }
+
     @Override
     public String toString() {
         return "Seizure{" +
-                //"id=" + id +
+                "id=" + id +
                 ", desc='" + desc + '\'' +
                 '}';
     }
