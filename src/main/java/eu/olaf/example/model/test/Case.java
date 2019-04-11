@@ -13,9 +13,6 @@ public class Case {
     private String name;
 
     @Embedded
-    //@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
-    // todo - add 'unique = true' to fix over taking
-    //@JoinColumn(name = "b_id", unique = true)
     private Seizure seizure;
 
     public Long getId() { return id; }
