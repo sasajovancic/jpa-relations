@@ -1,5 +1,7 @@
 package eu.olaf.example.model.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,7 @@ import javax.persistence.Id;
 
 
 @Entity(name = "T_EX_SEIZURE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Seizure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

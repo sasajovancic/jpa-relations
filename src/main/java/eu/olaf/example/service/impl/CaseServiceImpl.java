@@ -52,21 +52,7 @@ public class CaseServiceImpl implements CaseService {
         caseRepo.deleteById(id);
     }
 
-    private Case setId(Case cas) {
-        if (cas.getPersons() != null) {
-            for(Person p : cas.getPersons()) {
-                if (p.getId() == null) {
-                    p.setId(CompositeIdGenerator.nextRandomId());
-                }
-            }
-        }
-
-        return cas;
-    }
-
     private Case fix(Case cas) {
-
-        // cas = setId(cas);
 
         Case cNew = new Case();
 
@@ -89,11 +75,6 @@ public class CaseServiceImpl implements CaseService {
                 pNew.setName(p.getName());
                 pNew.setNationalNumber(p.getNationalNumber());
                 pNew.setId(p.getId());
-//                if (p.getCompositeId() != null) {
-//                    CompositeId newId = new CompositeId();
-//                    newId.setId(p.getCompositeId().getId());
-//                    pNew.setCompositeId(newId);
-//                }
                 pNew.setCas(cas);
                 cNew.addPerson(pNew);
             }
@@ -102,16 +83,5 @@ public class CaseServiceImpl implements CaseService {
         System.out.println(cNew);
         return cNew;
 
-//        if (cas.getPersons() != null) {
-//            for(Person p : cas.getPersons()) {
-//                if (p.getCompositeId() == null) {
-//                    p.setCompositeId(new CompositeId());
-//                }
-//                if (p.getCompositeId().getCas() == null) {
-//                    p.getCompositeId().setCas(cas);
-//                }
-//            }
-//        }
-//        return cas;
     }
 }
