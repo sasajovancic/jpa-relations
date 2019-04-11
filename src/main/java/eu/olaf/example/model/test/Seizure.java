@@ -1,9 +1,6 @@
 package eu.olaf.example.model.test;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 
 @Embeddable
