@@ -1,9 +1,12 @@
 package eu.olaf.example.model.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity(name = "T_CASE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Case {
     @Id
     @GeneratedValue

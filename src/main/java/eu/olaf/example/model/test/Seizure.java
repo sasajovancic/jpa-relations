@@ -1,16 +1,18 @@
 package eu.olaf.example.model.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 
 @Entity(name = "T_SEIZURE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Seizure {
     @Id
-    @Column(name = "case_id")
     private Long id;
 
     @OneToOne
-    @JoinColumn
+    @JoinColumn(name = "id")
     @MapsId
     private Case cas;
 
