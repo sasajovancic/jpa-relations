@@ -30,13 +30,8 @@ public class Seizure {
     public void setDesc(String desc) { this.desc = desc; }
     public Seizure withDesc(String desc) { setDesc(desc); return this; }
 
-    public Case getCas() {
-        return cas;
-    }
-    public void setCas(Case cas) {
-        this.cas = cas;
-        this.id = cas.getId();
-    }
+    public Case getCas() { return cas; }
+    public void setCas(Case cas) { this.cas = cas; this.id = cas.getId(); }
 
     @Override
     public String toString() {
