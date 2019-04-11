@@ -1,6 +1,7 @@
 package eu.olaf.example.model.test;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +17,7 @@ public class Case {
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "cas",cascade = CascadeType.ALL, orphanRemoval = true, optional = true)
-    @PrimaryKeyJoinColumn
+    @JsonManagedReference
     private Seizure seizure;
 
     public Long getId() { return id; }

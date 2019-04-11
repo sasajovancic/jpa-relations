@@ -39,6 +39,4 @@ public class CaseController {
     public void delete(@PathVariable  Long id) {
         caseService.delete(id);
     }
-
-
 }

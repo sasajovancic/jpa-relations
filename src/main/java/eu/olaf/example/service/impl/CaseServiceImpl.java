@@ -37,18 +37,25 @@ public class CaseServiceImpl implements CaseService {
     @Override
     @Transactional(readOnly = false)
     public Case save(Case cas) {
-        return caseRepo.save(cas);
+        return caseRepo.save(fix(cas));
     }
 
     @Override
     @Transactional(readOnly = false)
     public Case update(Case cas) {
-        return caseRepo.save(cas);
+        return caseRepo.save(fix(cas));
     }
 
     @Override
     @Transactional(readOnly = false)
     public void delete(Long id) {
         caseRepo.deleteById(id);
+    }
+
+    private Case fix(Case cas) {
+        if (cas.getSeizure() != null) {
+            cas.getSeizure().setCas(cas);
+        }
+        return cas;
     }
 }
