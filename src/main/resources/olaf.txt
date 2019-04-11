@@ -1,0 +1,11 @@
+         ${Ansi.BRIGHT_BLUE}oo  ${Ansi.BLUE}##      ####       ####        ##########: :##################.
+      ${Ansi.BRIGHT_BLUE}:ooo  ${Ansi.BLUE}######   ####       #####.      ###########  ######${Ansi.YELLOW}*${Ansi.BLUE}##${Ansi.YELLOW}*${Ansi.BLUE}########.
+     ${Ansi.BRIGHT_BLUE}ooo       ${Ansi.BLUE}####  ####      ########     ####        ####${Ansi.YELLOW}*${Ansi.BLUE}########${Ansi.YELLOW}*${Ansi.BLUE}#####.
+    ${Ansi.BRIGHT_BLUE}:oo*         ${Ansi.BLUE}### ####      ###& ####    ####        ###${Ansi.YELLOW}*${Ansi.BLUE}##########${Ansi.YELLOW}*${Ansi.BLUE}####.
+    ${Ansi.BRIGHT_BLUE}ooo          ${Ansi.BLUE}### ####     .###   ####   ########8  ####${Ansi.YELLOW}*${Ansi.BLUE}##########${Ansi.YELLOW}*${Ansi.BLUE}####.
+     ${Ansi.BRIGHT_BLUE}oo          ${Ansi.BLUE}### ####     ############  ####      ######${Ansi.YELLOW}*${Ansi.BLUE}########${Ansi.YELLOW}*${Ansi.BLUE}#####.
+     ${Ansi.BRIGHT_BLUE}:o  ${Ansi.BLUE}##   &####  ####     ############# ####    ###########${Ansi.YELLOW}*${Ansi.BLUE}##${Ansi.YELLOW}*${Ansi.BLUE}########.
+         ${Ansi.BLUE}&########   ############       #######    ########################.
+          ${Ansi.BLUE}8####      ############        ###:      ########################.
+
+              E U R O P E A N    A N T I - F R A U D    O F F I C E

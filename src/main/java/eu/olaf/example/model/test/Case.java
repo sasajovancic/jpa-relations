@@ -17,16 +17,12 @@ public class Case {
     @NotNull
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
-    // todo - add 'unique = true' to fix over taking
-    @JoinColumn(name = "b_id"/*, unique = true*/)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, optional = true)
+    @JoinColumn(name = "seizure_id")
     private Seizure seizure;
 
-    // @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL/*, orphanRemoval = true*/)
-    // TODO remove column
-    // @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
     @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "T_PERSON", joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "T_PERSON", joinColumns = @JoinColumn(name = "case_id"))
     private List<Person> persons;
 
     public Long getId() { return id; }
