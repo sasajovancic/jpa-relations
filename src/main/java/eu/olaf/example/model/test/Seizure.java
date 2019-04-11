@@ -6,19 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
-// @Entity(name = "T_B")
 @Embeddable
 public class Seizure {
-    //@Id
-    //@GeneratedValue
-    //private Long id;
 
-    // @NotNull
-    private String desc;
-
-//    public Long getId() { return id; }
-//    public void setId(Long id) { this.id = id; }
-//    public Seizure withId(Long id) { setId(id); return this; }
+	private String desc;
 
     public String getDesc() { return desc; }
     public void setDesc(String desc) { this.desc = desc; }
@@ -27,8 +18,7 @@ public class Seizure {
     @Override
     public String toString() {
         return "Seizure{" +
-                //"id=" + id +
-                ", desc='" + desc + '\'' +
+                "desc='" + desc + '\'' +
                 '}';
     }
 
