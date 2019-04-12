@@ -15,7 +15,6 @@ public class Seizure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // @NotNull
     private String desc;
 
     public Long getId() { return id; }

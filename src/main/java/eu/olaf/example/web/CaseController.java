@@ -36,21 +36,9 @@ public class CaseController {
         return caseService.update(cas);
     }
 
-    @DeleteMapping
+    @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable  Long id) {
         caseService.delete(id);
     }
-
-    /*private Case fix(Case cas) {
-        if (cas.getPersons() != null) {
-            cas.getPersons().stream().forEach(p -> {
-                if (p.getCompositeId() == null) {
-                    p.setCompositeId(new CompositeId());
-                }
-                p.getCompositeId().setCas(cas);
-            });
-        }
-        return cas;
-    }*/
 
 }

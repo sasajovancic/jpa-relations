@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class CompositeId implements Serializable {
 
-
     private Long id;
     private Long cas;
 
