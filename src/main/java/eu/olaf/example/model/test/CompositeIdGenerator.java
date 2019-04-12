@@ -13,7 +13,6 @@ public class CompositeIdGenerator implements IdentifierGenerator {
     public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object o) throws HibernateException {
         Long lId = (Long)((UUID.randomUUID().getLeastSignificantBits() & Long.MAX_VALUE) / 10000000000000L);
 
-        Person p;
         CompositeId compId;
         if (o == null || !(o instanceof Person)) {
             compId = new CompositeId();

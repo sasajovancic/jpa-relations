@@ -6,15 +6,7 @@ import javax.annotation.Generated;
 import javax.persistence.*;
 
 @Entity(name = "T_EX_PERSON")
-// @IdClass(CompositeId.class)
 public class Person {
-
-//    @Id
-//    @GeneratedValue
-//    private Long id;
-
-//    @Column(name = "CASE_ID")
-//    private Long caseId;
 
     @EmbeddedId
     @GenericGenerator(name = "sequence_comp_id", strategy = "eu.olaf.example.model.test.CompositeIdGenerator")
@@ -25,12 +17,7 @@ public class Person {
     private String nationalNumber;
 
     public Person() {
-        //compositeId = new CompositeId();
     }
-
-//    public Long getId() { return id; }
-//    public void setId(Long id) { this.id = id; }
-//    public Person withId(Long id) { setId(id); return this; }
 
     public CompositeId getCompositeId() { return compositeId; }
     public void setCompositeId(CompositeId compositeId) { this.compositeId = compositeId; }

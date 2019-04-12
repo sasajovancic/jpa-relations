@@ -2,10 +2,14 @@ package eu.olaf.example.model.test;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "T_EX_CASE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Case {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,13 +19,10 @@ public class Case {
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
-    // todo - add 'unique = true' to fix over taking
-    @JoinColumn(name = "b_id"/*, unique = true*/)
+    @JoinColumn(name = "case_id"/*, unique = true*/)
     private Seizure seizure;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "compositeId.cas"/*, orphanRemoval = true*/)
-    // TODO remove column
-    // @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
     private List<Person> persons;
 
     public Long getId() { return id; }

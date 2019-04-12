@@ -10,48 +10,24 @@ import java.util.Objects;
 public class CompositeId implements Serializable {
 
     @Column(name = "id", unique = true)
-    // @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-//    @Column(name = "CASE_ID", insertable = false, updatable = false)
-//    private Long caseId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CASE_ID", referencedColumnName = "ID")
     @JsonIgnore
     private Case cas;
 
-
     public CompositeId() {}
-    public CompositeId(Long id, /*Long caseId*/ Case cas) {
+    public CompositeId(Long id, Case cas) {
         this.id = id;
-        // this.caseId = caseId;
         this.cas = cas;
     }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-//    public Long getCaseId() { return caseId; }
-//    public void setCaseId(Long caseId) { this.caseId = caseId; }
-
-
     public Case getCas() { return cas; }
     public void setCas(Case cas) { this.cas = cas; }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        CompositeId that = (CompositeId) o;
-//        return Objects.equals(id, that.id) && Objects.equals(caseId, that.caseId);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, caseId);
-//    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -64,7 +40,6 @@ public class CompositeId implements Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, cas);
     }
 
@@ -72,7 +47,6 @@ public class CompositeId implements Serializable {
     public String toString() {
         return "CompositeId{" +
                 "id=" + id +
-     //           ", caseId=" + caseId +
                 '}';
     }
 }
