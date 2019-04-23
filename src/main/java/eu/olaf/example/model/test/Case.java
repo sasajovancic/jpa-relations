@@ -22,7 +22,7 @@ public class Case {
     @JoinColumn(name = "case_id"/*, unique = true*/)
     private Seizure seizure;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "compositeId.cas"/*, orphanRemoval = true*/)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "compositeId.cas", orphanRemoval = true)
     private List<Person> persons;
 
     public Long getId() { return id; }
