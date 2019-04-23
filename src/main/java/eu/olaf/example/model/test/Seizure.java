@@ -4,8 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity(name = "T_SEIZURE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Seizure {
     @Id
     @GeneratedValue

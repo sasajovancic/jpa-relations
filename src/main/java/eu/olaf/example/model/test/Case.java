@@ -3,7 +3,10 @@ package eu.olaf.example.model.test;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity(name = "T_CASE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Case {
     @Id
     @GeneratedValue
@@ -13,7 +16,6 @@ public class Case {
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true/*, optional = true*/)
-    // todo - add 'unique = true' to fix over taking
     @JoinColumn(name = "seizure_id", unique = true)
     private Seizure seizure;
 
